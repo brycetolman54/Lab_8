@@ -2,20 +2,23 @@
 // Created by bat20 on 7/25/2022.
 //
 
-#ifndef LAB_7_NODE_H
-#define LAB_7_NODE_H
+#ifndef LAB_8_NODE_H
+#define LAB_8_NODE_H
 
 #include "NodeInterface.h"
+#include <cstdlib>
 
 class Node : public NodeInterface {
 private:
     int value;
+    int height;
 public:
     Node* leftChild;
     Node* rightChild;
 
     Node(int data) {
         value = data;
+        height = 1;
         leftChild = NULL;
         rightChild = NULL;
     }
@@ -47,7 +50,12 @@ public:
     */
     Node* getRightChild() const;
 
+    int getHeight();
+
+    void updateHeight();
+
+    int getBalance();
 };
 
 
-#endif //LAB_7_NODE_H
+#endif //LAB_8_NODE_H

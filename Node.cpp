@@ -30,3 +30,44 @@ Node* Node::getLeftChild() const {
 Node* Node::getRightChild() const {
     return rightChild;
 }
+
+int Node::getHeight() {
+    return height;
+}
+
+void Node::updateHeight() {
+    if(rightChild != NULL && leftChild != NULL) { // If it has both children
+        if (rightChild->getHeight() > leftChild->getHeight()) {
+            height = rightChild->getHeight() + 1;
+        } else {
+            height = leftChild->getHeight() + 1;
+        }
+    }
+    else if(rightChild != NULL) { // If it only has the right child
+        height = rightChild->getHeight() + 1;
+    }
+    else if(leftChild != NULL) { // If it only has the left child
+        height = leftChild->getHeight() + 1;
+    }
+    else { // If it has no children
+        height = 1;
+    }
+}
+
+int Node::getBalance() {
+    int rightHeight;
+    int leftHeight;
+    if(rightChild == NULL) {
+        rightHeight = 0;
+    }
+    else {
+        rightHeight = rightChild->height;
+    }
+    if(leftChild == NULL) {
+        leftHeight = 0;
+    }
+    else {
+        leftHeight = leftChild->height;
+    }
+    return rightHeight - leftHeight;
+}

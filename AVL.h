@@ -1,24 +1,29 @@
 //
-// Created by bat20 on 7/25/2022.
+// Created by bat20 on 7/28/2022.
 //
 
-#ifndef LAB_7_BST_H
-#define LAB_7_BST_H
+#ifndef LAB_8_AVL_H
+#define LAB_8_AVL_H
 
-#include "BSTInterface.h"
+#include <cstdlib>
+#include <vector>
+#include <iostream>
+#include "AVLInterface.h"
+#include "NodeInterface.h"
 #include "Node.h"
 
 
-class BST : public BSTInterface {
+class AVL : public AVLInterface {
 private:
     Node* root;
     Node* current;
+    vector<Node*> recursiveNodes;
 public:
-    BST() {
+    AVL() {
         root = NULL;
         current = root;
     }
-    ~BST() {
+    ~AVL() {
         delete root;
     }
 
@@ -55,15 +60,30 @@ public:
 
     void Case1(Node*& node);
 
-    void Case2(Node*& node);
+    void Case2(Node*& node, bool Root = false);
 
-    void Case3(Node*& node);
+    void Case3(Node*& node, bool Root = false);
 
-    void Case4(Node*& node);
+    void Case4(Node*& node, bool Root = false);
 
-    void Case5(Node*& node);
+    void Case5(Node*& node, bool Root = false);
 
+    void rightRotation(Node*& parent, bool side); // True = left, false = right
+
+    void leftRotation(Node*& parent, bool side);
+
+    void rootLeftRotation(Node*& n, Node*& k);
+
+    void rootRightRotation(Node*& n, Node*& k);
+
+    void checkBalance(Node*& parent, Node*& child);
+
+    void checkRootBalance(Node*& parent);
+
+    void updateAll(vector<Node*>& nodes);
+
+    void printNodes(vector<Node*>& nodes);
 };
 
 
-#endif //LAB_7_BST_H
+#endif //LAB_8_AVL_H
