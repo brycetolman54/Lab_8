@@ -174,19 +174,23 @@ bool AVL::remove(int data) {
     else if(current->getData() == data){ // If the data point is the root
         if(current->rightChild == NULL && current->leftChild == NULL) { // If it is the last node
             Case1(root);
+            updateAll(recursiveNodes);
             return true;
         }
         else if(current->leftChild == NULL) { // If the one being deleted does not have a child on the left
             Case2(root, true);
+            updateAll(recursiveNodes);
             return true;
         }
         else { // If the one being deleted does have a child on the left
             if(current->leftChild->rightChild == NULL) { // If the child on the left has no children on the right
                 Case4(root, true);
+                updateAll(recursiveNodes);
                 return true;
             }
             else { // If the child on the left has at least one child on the right
                 Case5(root, true);
+                updateAll(recursiveNodes);
                 return true;
             }
         }
